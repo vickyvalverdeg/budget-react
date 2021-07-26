@@ -1,0 +1,19 @@
+import React from 'react'
+import { Button, Modal } from "semantic-ui-react"
+
+function ModalEdit({isOpen, setIsOpen}) {
+    return (
+        <Modal open={isOpen}>
+            <Modal.Header>Edit Entry</Modal.Header>
+            <Modal.Content>
+                <Modal.Description>Something here</Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+                <Button onClick={()=> setIsOpen(false)}>Close</Button>
+                <Button>Save</Button>
+            </Modal.Actions>
+        </Modal>
+    )
+}
+
+export default ModalEdit
