@@ -30,11 +30,13 @@ export default App;
 
 const initialEntries = [
   {
+    id: 1,
     description: "Work income",
     value: "$1000.00",
     isExpense: false,
   },
   {
+    id: 2,
     description: "Water bill",
     value: "$20",
     isExpense: true,
@@ -45,6 +47,7 @@ const initialEntries = [
     isExpense: true,
   },
   {
+    id: 3,
     description: "Power bill",
     value: "$50",
     isExpense: true,
