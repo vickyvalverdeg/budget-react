@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Grid, Segment, Icon } from "semantic-ui-react";
-import ModalEdit from "./ModalEdit";
+import React from "react";
+import { Grid, Icon, Segment } from "semantic-ui-react";
 
-function EntryLine({ id, description, value, isExpense = false, deleteEntry, setIsOpen }) {
+function EntryLine({ id, description, value, isExpense = false, deleteEntry, editEntry }) {
   return (
     <>
       <Segment color={isExpense ? "red" : "green"}>
@@ -15,7 +14,7 @@ function EntryLine({ id, description, value, isExpense = false, deleteEntry, set
               {value}
             </Grid.Column>
             <Grid.Column width={3}>
-              <Icon name="edit" bordered onClick={() => setIsOpen(true)} />
+              <Icon name="edit" bordered onClick={() => editEntry(id)} />
               <Icon name="trash" bordered onClick={() => deleteEntry(id)} />
             </Grid.Column>
           </Grid.Row>
