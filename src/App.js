@@ -15,6 +15,9 @@ function App() {
   const [isExpense, setIsExpense] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [entryId, setEntryId] = useState()
+  const [incomeTotal, setIncomeTotal] = useState(0)
+  const [expenseTotal, setExpenseTotal] = useState(0)
+  const [total, setTotal] = useState(0)
 
   useEffect(()=> {
     if(!isOpen && entryId){
@@ -33,15 +36,15 @@ function App() {
     let totalExpenses = 0
     entries.map((entry) => {
       if(entry.isExpense){
-        return totalExpenses += entry.value
+        return (totalExpenses += Number(entry.value))
       } else {
-        return totalIncomes += entry.value
+        return (totalIncomes += Number(entry.value))
       }
     })
-    let total = totalIncomes - totalExpenses
-    console.log("total incomes", totalIncomes)
-    console.log("total expense", totalExpenses)
-  }, entries)
+    setTotal(totalIncomes - totalExpenses)
+    setExpenseTotal(totalExpenses)
+    setIncomeTotal(totalIncomes)
+  }, [entries])
 
   const resetEntry = () => {
     setDescription('')
@@ -79,9 +82,9 @@ function App() {
   return (
     <Container>
       <MainHeader title="Budget" />
-      <DisplayBalance size="small" title="Your Balance" value="25555.00" />
+      <DisplayBalance size="small" title="Your Balance" value={total} />
 
-      <DisplayBalances />
+      <DisplayBalances incomeTotal={incomeTotal} expenseTotal={expenseTotal} />
 
       <MainHeader title="History" type="h3" />
 
