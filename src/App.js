@@ -7,6 +7,7 @@ import EntryLines from "./components/EntryLines";
 import MainHeader from "./components/MainHeader";
 import ModalEdit from "./components/ModalEdit";
 import NewEntryForm from "./components/NewEntryForm";
+import { createStore } from 'redux'
 
 function App() {
   const [entries, setEntries] = useState(initialEntries);
@@ -46,6 +47,12 @@ function App() {
     setExpenseTotal(totalExpenses)
     setIncomeTotal(totalIncomes)
   }, [entries])
+
+  const store = createStore((state = initialEntries) => {
+    return state
+  })
+
+  console.log(store.getState())
 
   const resetEntry = () => {
     setDescription('')
