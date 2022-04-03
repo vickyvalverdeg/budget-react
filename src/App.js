@@ -48,11 +48,26 @@ function App() {
     setIncomeTotal(totalIncomes)
   }, [entries])
 
-  const store = createStore((state = initialEntries) => {
-    return state
+  const store = createStore((state = initialEntries, action) => {
+    console.log("action", action)
+    switch(action.type){
+      case 'ADD_ENTRY':
+        const newEntries = entries.concat({...action.payload})
+        return newEntries
+      default:
+        return state
+    }
   })
 
-  console.log(store.getState())
+  console.log("store before ",store.getState())
+  const payload = {
+    id:5,
+    description: 'Hello from Redux',
+    value: 100,
+    isExpense: false
+  }
+  store.dispatch({ type: 'ADD_ENTRY', payload})
+  console.log("store after ",store.getState())
 
   const resetEntry = () => {
     setDescription('')
