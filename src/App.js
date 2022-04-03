@@ -52,14 +52,17 @@ function App() {
     console.log("action", action)
     switch(action.type){
       case 'ADD_ENTRY':
-        const newEntries = entries.concat({...action.payload})
+        const newEntries = state.concat({...action.payload})
         return newEntries
       default:
         return state
     }
   })
 
-  console.log("store before ",store.getState())
+  store.subscribe(()=> {
+    console.log("store ",store.getState())
+  })
+
   const payload = {
     id:5,
     description: 'Hello from Redux',
@@ -67,7 +70,6 @@ function App() {
     isExpense: false
   }
   store.dispatch({ type: 'ADD_ENTRY', payload})
-  console.log("store after ",store.getState())
 
   const resetEntry = () => {
     setDescription('')
