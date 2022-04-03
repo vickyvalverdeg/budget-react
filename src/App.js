@@ -28,6 +28,21 @@ function App() {
     }
   }, [isOpen])
 
+  useEffect(()=> {
+    let totalIncomes = 0
+    let totalExpenses = 0
+    entries.map((entry) => {
+      if(entry.isExpense){
+        return totalExpenses += entry.value
+      } else {
+        return totalIncomes += entry.value
+      }
+    })
+    let total = totalIncomes - totalExpenses
+    console.log("total incomes", totalIncomes)
+    console.log("total expense", totalExpenses)
+  }, entries)
+
   const resetEntry = () => {
     setDescription('')
     setValue('')
@@ -107,24 +122,24 @@ const initialEntries = [
   {
     id: 1,
     description: "Work income",
-    value: "$1000.00",
+    value: 1000.00,
     isExpense: false,
   },
   {
     id: 2,
     description: "Water bill",
-    value: "$20",
+    value: 20.00,
     isExpense: true,
   },
   {
     description: "Rent",
-    value: "$30",
+    value: 30.00,
     isExpense: true,
   },
   {
     id: 3,
     description: "Power bill",
-    value: "$50",
+    value: 50.00,
     isExpense: true,
   },
 ];
